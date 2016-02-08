@@ -33,7 +33,7 @@ public:
 
 	int getSize(){return this->size;}
 	int getNumElements(){return this->numElements;}
-
+	Node* getArr(){return this->arr;}
 
 };
 
