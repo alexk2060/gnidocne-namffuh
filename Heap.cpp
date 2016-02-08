@@ -29,7 +29,7 @@ void Heap::insert(Node const& n){
 	if(numElements < size){
 		this->arr[numElements] = n;
 		++(this->numElements);
-		//percolate();
+		//percolateUp();
 		std::cout<< "success" << std::endl;
 	}
 	else{
@@ -38,10 +38,11 @@ void Heap::insert(Node const& n){
 }
 
 
-void Heap::deleteMin(){
+Node Heap::deleteMin(){
+	Node tmp = this->arr[1];
 	this->arr[1] = this->arr[numElements];
 	//percolate();
-	
+	return tmp;
 }
 
 
@@ -70,6 +71,7 @@ void Heap::percolateUp(int location){
 	int parent = location;
 	for(location; 2/location > 0; location = parent){
 		parent = this->getParent(location);
+		if()
 	}
 }
 

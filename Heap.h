@@ -24,14 +24,15 @@ public:
 	
 	void insert(Node const&);
 	void print();
-	void deleteMin(); 
+	Node deleteMin(); 
 
 	//void buildHeap(T *arr, int size); //requires an array input
 
 	void percolateDown(int location);
 	void percolateUp(int location);
 
-
+	int getSize(){return this->size;}
+	int getNumElements(){return this->numElements;}
 
 
 };
