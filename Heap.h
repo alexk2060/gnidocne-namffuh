@@ -13,9 +13,8 @@ private:
 
 public:
 	Heap();
+	Heap(Node *arr, int currentSize); //build a heap from a given array.	
 	~Heap();
-	//Heap(T *arr, int currentSize); //build a heap from a given array.	
-
 	int getParent(const int &child);
 	int getLeftChild(const int &parent);
 	int getRightChild(const int &parent);
@@ -26,7 +25,6 @@ public:
 	void print();
 	Node deleteMin(); 
 
-	//void buildHeap(T *arr, int size); //requires an array input
 
 	void percolateDown(int location);
 	void percolateUp(int location);

@@ -9,6 +9,10 @@ Heap::Heap(){
 	arr = new Node[size]; 
 }
 
+Heap::~Heap(){
+
+}
+
 Heap::Heap(Node *arr, int currentSize){
 	this->numElements = currentSize;
 	this->size = currentSize;
@@ -36,8 +40,8 @@ int Heap::getRightChild(const int &parent) {
 void Heap::insert(Node const& n){
 	if(numElements < size){
 		this->arr[numElements] = n;
-		++(this->numElements);
 		percolateUp(numElements);
+		++(this->numElements);
 		std::cout<< "success" << std::endl;
 	}
 	else{
@@ -57,9 +61,11 @@ Node Heap::deleteMin(){
 
 
 void Heap::percolateDown(int location){
+	//std::cout << "perc called" << std::endl;
 	Node tmp = this->arr[location];
 	int child = location;
 	for(location; 2*location <= numElements; location = child){
+		//std::cout << "looped" << std::endl;
 		child = this->getLeftChild(location);
 		if(child != numElements && this->arr[child+1].getFreq() < this->arr[child].getFreq())
 			++child;
@@ -76,17 +82,29 @@ void Heap::percolateDown(int location){
 
 
 void Heap::percolateUp(int location){
+	std::cout << "perc called" << std::endl;
 	Node tmp = this->arr[location];
 	int parent = location;
-	for(location; 2/location > 0; location = parent){
+	for(location; location/2 > 0; location = parent){
+		std::cout << "looped" << std::endl;
 		parent = this->getParent(location);
-		if(location > 0 && this->arr[parent]->getFreq() < this->arr[location]->getFreq()){
+		std::cout << parent << std::endl;		
+		std::cout << location << std::endl;
+
+		if(this->arr[parent].getFreq() < this->arr[location].getFreq()){
+			std::cout << "parent less than" << std::endl;
 			this->arr[location] = this->arr[parent];
 			this->arr[parent] = tmp; 
 		}
 		else
 			break;
 	}
+}
+
+//print out each array level 
+void Heap::print(){
+	for(int i = 1; i<this->numElements; i++)
+		std::cout << i << ":	"<< this->arr[i].getC() << ", "<< this->arr[i].getFreq() << std::endl;
 }
 
 
