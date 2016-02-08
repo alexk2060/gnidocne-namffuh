@@ -8,7 +8,7 @@ BINARIES=heap
 test:${BINARIES}
 	./heap
 
-hash: Heap.o Main.o
+heap: Heap.o Main.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
 
 

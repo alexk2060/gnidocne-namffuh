@@ -6,7 +6,7 @@
 Heap::Heap(){
 	numElements = 1; //initialize to one so our calculations are easier. Means that arr[1] is now the min. 
 	size = 32;
-	arr = new Node[ARR_SIZE]; 
+	arr = new Node[size]; 
 }
 
 
@@ -26,7 +26,7 @@ int Heap::getRightChild(const int &parent) {
 
 
 void Heap::insert(Node const& n){
-	if(numElements < ARR_SIZE){
+	if(numElements < size){
 		this->arr[numElements] = n;
 		++(this->numElements);
 		//percolate();
@@ -51,9 +51,9 @@ void Heap::percolateDown(int location){
 	int child = location;
 	for(location; 2*location <= numElements; location = child){
 		child = this->getLeftChild(location);
-		if(child != numElements && this->arr[child+1] < this->arr[child])
+		if(child != numElements && this->arr[child+1].getFreq() < this->arr[child].getFreq())
 			++child;
-		if(this->arr[child] < this->arr[location]){
+		if(this->arr[child].getFreq() < this->arr[location].getFreq()){
 			this->arr[location] = this->arr[child];
 			this->arr[child] = tmp;
 		}

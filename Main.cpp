@@ -1,11 +1,8 @@
-// Hashtable Project
 
 #include <iostream>
 #include <exception>
 #include <string>
 #include <cstdio>
-#include "Hashtable.h"
-#include "Student.h"
 
 using namespace std;
 

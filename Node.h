@@ -17,4 +17,6 @@ class Node{
 		Node* getLeft(){return left;};
 		Node* getRight(){return right;};
 		
-}
+};
+
+#endif
