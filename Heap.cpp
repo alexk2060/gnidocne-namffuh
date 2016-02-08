@@ -9,6 +9,14 @@ Heap::Heap(){
 	arr = new Node[size]; 
 }
 
+Heap::Heap(Node *arr, int currentSize){
+	this->numElements = currentSize;
+	this->size = currentSize;
+	this->arr = arr;
+	for(int i = numElements; i > 0; i--)
+		percolateDown(i);
+
+}
 
 int Heap::getParent(const int &child) {
 	return child/2;
@@ -29,7 +37,7 @@ void Heap::insert(Node const& n){
 	if(numElements < size){
 		this->arr[numElements] = n;
 		++(this->numElements);
-		//percolateUp();
+		percolateUp(numElements);
 		std::cout<< "success" << std::endl;
 	}
 	else{
@@ -41,7 +49,8 @@ void Heap::insert(Node const& n){
 Node Heap::deleteMin(){
 	Node tmp = this->arr[1];
 	this->arr[1] = this->arr[numElements];
-	//percolate();
+	--(this->numElements);
+	this->percolateDown(1);
 	return tmp;
 }
 
@@ -71,14 +80,16 @@ void Heap::percolateUp(int location){
 	int parent = location;
 	for(location; 2/location > 0; location = parent){
 		parent = this->getParent(location);
-		if()
+		if(location > 0 && this->arr[parent]->getFreq() < this->arr[location]->getFreq()){
+			this->arr[location] = this->arr[parent];
+			this->arr[parent] = tmp; 
+		}
+		else
+			break;
 	}
 }
 
-/* 
-void Heap::buildHeap(T *arr, int currentSize){
 
-}*/
 
 
 
