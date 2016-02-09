@@ -17,7 +17,8 @@ class HE{
 		};
 		
 	public:
-
+		
+		HE(Heap input);
 		void setBits();
 		void insert(Node n);
 		Node remove();

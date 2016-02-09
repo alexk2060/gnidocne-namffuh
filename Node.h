@@ -12,12 +12,19 @@ class Node{
 		Node* right;
 
 	public:
+		Node(){
+			c='';
+			freq = 0;
+			left = NULL;
+			right = NULL;
+		}
 		Node(char a){
 			c=a;
 			freq=0;
 			left = NULL;
 			right = NULL;
 		};
+		void setC(char character){c=character;};
 		void setFreq(int f){freq = f;};
 		void setLeft(Node* n){this->left = n;};
 		void setRight(Node* n){this->right = n;};

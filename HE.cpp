@@ -3,6 +3,12 @@
 
 using namespace std;
 
+	HE::HE(Heap input){
+		h = input;
+		holder = NULL;
+		e = new encode[28];
+	}
+	
 	void HE::setBits(encode* a){
 		for(int i = 1; i < 28; i++){
 			if(i==1)
