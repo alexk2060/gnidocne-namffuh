@@ -1,20 +1,24 @@
 #ifndef __HE_H__
 #define __HE_H__
 
-#include <string.h>
+#include <string>
 #include "Heap.h"
 
 class HE{
 	private:
-
+		struct encode{
+			encode(){
+				n= new Node();
+				bit = "";
+			}
+			encode(Node input):n(input){};
+			Node n;
+			std::string bit;
+		};
 		Heap h;
 		encode[28] e;
 		Node* holder;
-		struct encode{
-			encode(Node input):n(input){};
-			Node n;
-			std::String bit;
-		};
+
 		
 	public:
 		

@@ -14,7 +14,7 @@ private:
 
 public:
 	Heap();
-	Heap(Node *arr, int currentSize); //build a heap from a given array.	
+	Heap(Node *arr, int currentSize); //build a heap from a given array.
 	~Heap();
 	int getParent(const int &child);
 	int getLeftChild(const int &parent);

@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++11 -Wall 
-BINARIES=heap
+BINARIES=heap HE
 
 
 
@@ -8,7 +8,7 @@ BINARIES=heap
 test:${BINARIES}
 	./heap
 
-heap: Heap.o Main.o
+heap: Heap.o HE.o Main.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
 
 

@@ -21,11 +21,11 @@ int main(int argc,char *argv[])
 		encodedFile = "encoded.input";
 	}
 	else if(argc == 2){
-		inputFile = argv[2];
+		inputFile = new string(argv[2]);
 	}
 	else{
-		inputFile = argv[2];
-		encodedFile = argv[3];
+		inputFile = new string(argv[2]);
+		encodedFile = new string(argv[3]);
 	}
 	
 	freopen(inputFile,"r",stdin);     // if you use this line, it merely redirects stdin to input.txt file; simple as that
