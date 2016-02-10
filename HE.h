@@ -13,7 +13,7 @@ class HE{
 		struct encode{
 			encode(Node input):n(input){};
 			Node n;
-			String bit;
+			std::String bit;
 		};
 		
 	public:

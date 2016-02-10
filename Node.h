@@ -13,7 +13,7 @@ class Node{
 
 	public:
 		Node(){
-			c='';
+			c='\0';
 			freq = 0;
 			left = NULL;
 			right = NULL;

@@ -49,16 +49,16 @@ int main(int argc,char *argv[])
 	for(int i=0; i<it.end(); i++){
 		int x = (int)input[i] - 92;
 		if(x < 0){
-			frequencey[0].setFreq(frequencey[0].getFreq()+1);
+			frequency[0].setFreq(frequency[0].getFreq()+1);
 		}
-		frequencey[x].setFreq(frequencey[x].getFreq()+1);
+		frequency[x].setFreq(frequency[x].getFreq()+1);
 	}
 	
 	//getting all non zero elements in array
 	vector<Node> allFrequencies;
-	for(int i=0; i<frequencey.length; i++){
-		if(frequencey[i].getFreq() > 0){
-			allFrequencies.push_back(frequencey[i]);
+	for(int i=0; i<frequency.length; i++){
+		if(frequency[i].getFreq() > 0){
+			allFrequencies.push_back(frequency[i]);
 		}
 	}
 	
