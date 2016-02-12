@@ -35,9 +35,9 @@ using namespace std;
 			//whatever was first goes left and the second one goes right
 			Node* internal = new Node('!');
 			int newNumber = n.getFreq() + holder->getFreq();
-			internal.setFreq(newNumber);
-			internal.setLeft(holder);
-			internal.setRight(&n);
+			internal->setFreq(newNumber);
+			internal->setLeft(holder);
+			internal->setRight(&n);
 			holder = internal;
 		}
 	}
@@ -52,14 +52,14 @@ using namespace std;
 		if(n == NULL)
 			return;
 		e[i] = new encode(n);
-		fillE(n.getLeft(),i*2);
-		fillE(n.getRight(),(i*2+1));
+		fillE(n->getLeft(),i*2);
+		fillE(n->getRight(),(i*2+1));
 	}
 
 	void HE::invariant(){
 		while(h.getNumElements()!=1){
-			insert(deleteMin());
-			insert(deleteMin());
+			insert(h.deleteMin());
+			insert(h.deleteMin());
 			Node t = remove();
 			h.insert(t);
 			if(h.getNumElements() == 1)
