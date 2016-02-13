@@ -14,8 +14,8 @@ using namespace std;
 
 int main(int argc,char *argv[])
 {
-	char* inputFile;
-	char* encodedFile = "";
+	char const* inputFile;
+	char const* encodedFile = "";
 	if(argc < 2){
 		inputFile = "plain.input";
 		encodedFile = "encoded.input";
