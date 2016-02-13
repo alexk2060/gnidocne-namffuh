@@ -49,7 +49,7 @@ using namespace std;
 		return *(t);
 	}
 
-	void HE::fillE(encode* n, int i){
+	void HE::fillE(Node* n, int i){
 		if(n == NULL)
 			return;
 		encode *tmp = new encode(n);
@@ -71,4 +71,8 @@ using namespace std;
 
 	HE::encode* HE::getE(){
 		return e;
+	}
+
+	Node* HE::getHolder(){
+		return holder;
 	}

@@ -77,7 +77,7 @@ int main(int argc,char *argv[])
 		//pass it over to HE
 		HE var(h);
 		var.invariant();
-		var.fillE(&(var.getE()[1]), 0); //<------fix
+		var.fillE(var.getHolder(), 0); //<------fix
 		var.setBits(var.getE());
 		string output ="";
 		for(int i = 0; cInput[i] != '\0'; i++){
