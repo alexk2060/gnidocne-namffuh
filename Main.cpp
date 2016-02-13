@@ -14,18 +14,18 @@ using namespace std;
 
 int main(int argc,char *argv[])
 {
-	string inputFile;
-	string encodedFile = "";
+	char* inputFile;
+	char* encodedFile = "";
 	if(argc < 2){
 		inputFile = "plain.input";
 		encodedFile = "encoded.input";
 	}
 	else if(argc == 2){
-		inputFile = new string(argv[2]);
+		inputFile = argv[2];
 	}
 	else{
-		inputFile = new string(argv[2]);
-		encodedFile = new string(argv[3]);
+		inputFile = argv[2];
+		encodedFile = argv[3];
 	}
 	
 	freopen(inputFile,"r",stdin);     // if you use this line, it merely redirects stdin to input.txt file; simple as that
@@ -75,7 +75,7 @@ int main(int argc,char *argv[])
 		//pass it over to HE
 		HE var = new HE(h);
 		var.invariant();
-		var.fillE(holder, 0);
+		var.fillE(holder, 0); //<------fix
 		var.setBits(var.getE());
 		string output ="";
 		for(int i = 0; i<it.end(); i++){
