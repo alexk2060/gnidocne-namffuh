@@ -1,5 +1,6 @@
 CXX=g++
-CXXFLAGS=-std=c++11 -Wall 
+CXXFLAGS=-Wall 
+			#-std=c++11
 BINARIES=heap HE
 
 

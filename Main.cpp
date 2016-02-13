@@ -32,11 +32,11 @@ int main(int argc,char *argv[])
 	string input = "";
 	cin >> input;
 
-	Node[] frequency = new Node[27];
+	Node* frequency= new Node[28];
 	
 	//initialize each char value in frequency to a-z and space
-	for(int i=1; i<27; i++){
-		if(i==0){
+	for(int i=1; i<28; i++){
+		if(i==27){
 			frequency[i].setC(32); //32 is ascii value for space
 		}
 		else
@@ -44,34 +44,33 @@ int main(int argc,char *argv[])
 	}
 	
 	//update frequencies of chars in frequency by iterating through array
+	int uniqueChars = 0;
 	string::iterator it = input.begin();
 	//const char* cInput = input.c_str();
 	for(int i=0; i<it.end(); i++){
 		int x = (int)input[i] - 92;
+		if(frequency[x].getFreq() == 0)
+			++uniqueChars;
 		if(x < 0){
-			frequency[0].setFreq(frequency[0].getFreq()+1);
+			frequency[27].setFreq(frequency[27].getFreq()+1);
 		}
 		frequency[x].setFreq(frequency[x].getFreq()+1);
 	}
 	
 	//getting all non zero elements in array
-	vector<Node> allFrequencies;
-	for(int i=0; i<frequency.length; i++){
+	Node* nonZeroFrequencies = new Node[uniqueChars];
+	int count = 0;
+	for(int i=0; i<28; i++){
 		if(frequency[i].getFreq() > 0){
-			allFrequencies.push_back(frequency[i]);
+			nonZeroFrequencies[count] = frequency[i];
+			++count;
 		}
-	}
-	
-	//moving elements from vector to array
-	Node[] newFrequencies = new Node[allFrequencies.size()];
-	for(int i=0; i<allFrequencies.size; i++){
-		newFrequencies[i] = allFrequencies.at(i);
 	}
 	
 	try
 	{
 		//complete heap
-		Heap h = new Heap(newFrequencies, allFrequencies.size());
+		Heap h = new Heap(nonZeroFrequencies, uniqueChars);
 		
 		//pass it over to HE
 		HE var = new HE(h);
@@ -81,7 +80,7 @@ int main(int argc,char *argv[])
 		string output ="";
 		for(int i = 0; i<it.end(); i++){
 			for(int j = 0; j < 27; j++){
-				if(var.getE()[j].n.getC()==input[i])
+				if(var.getE()[j].n->getC()==input[i])
 					output += var.getE().[j].n.getC();
 			}
 		}
@@ -91,6 +90,8 @@ int main(int argc,char *argv[])
 	{
 		cerr << ex.what() << endl;
 	}
+
+	delete[] frequency;
 	return 0;
 }
 
