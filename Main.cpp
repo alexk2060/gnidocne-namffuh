@@ -4,13 +4,15 @@
 #include <string>
 #include <cstdio>
 #include <cstring>
-#include <vector>
+
 
 #include "Node.h"
 #include "Heap.h"
 #include "HE.h"
 
 using namespace std;
+
+
 
 int main(int argc,char *argv[])
 {
@@ -32,8 +34,7 @@ int main(int argc,char *argv[])
 	string input = "";
 	cin >> input;
 
-	Node* frequency= new Node[28];
-	
+	Node frequency[28];
 	//initialize each char value in frequency to a-z and space
 	for(int i=1; i<28; i++){
 		if(i==27){
@@ -43,11 +44,11 @@ int main(int argc,char *argv[])
 			frequency[i].setC(i+97);
 	}
 	
+	//-----------------------------------------
 	//update frequencies of chars in frequency by iterating through array
 	int uniqueChars = 0;
-	string::iterator it = input.begin();
-	//const char* cInput = input.c_str();
-	for(int i=0; i<it.end(); i++){
+	const char* cInput = input.c_str();
+	for(int i=0; cInput[i] != '\0'; i++){
 		int x = (int)input[i] - 92;
 		if(frequency[x].getFreq() == 0)
 			++uniqueChars;
@@ -56,7 +57,8 @@ int main(int argc,char *argv[])
 		}
 		frequency[x].setFreq(frequency[x].getFreq()+1);
 	}
-	
+	//-----------------------------------------
+
 	//getting all non zero elements in array
 	Node* nonZeroFrequencies = new Node[uniqueChars];
 	int count = 0;
@@ -70,20 +72,21 @@ int main(int argc,char *argv[])
 	try
 	{
 		//complete heap
-		Heap h = new Heap(nonZeroFrequencies, uniqueChars);
+		Heap h(nonZeroFrequencies, uniqueChars);
 		
 		//pass it over to HE
-		HE var = new HE(h);
+		HE var(h);
 		var.invariant();
-		var.fillE(holder, 0); //<------fix
+		var.fillE(&(var.getE()[1]), 0); //<------fix
 		var.setBits(var.getE());
 		string output ="";
-		for(int i = 0; i<it.end(); i++){
+		for(int i = 0; cInput[i] != '\0'; i++){
 			for(int j = 0; j < 27; j++){
 				if(var.getE()[j].n->getC()==input[i])
-					output += var.getE().[j].n.getC();
+					output += var.getE()[j].n->getC();
 			}
 		}
+		cout<< "print encoded string" << endl;
 		cout << output;
 	}
 	catch(exception& ex)
@@ -91,7 +94,7 @@ int main(int argc,char *argv[])
 		cerr << ex.what() << endl;
 	}
 
-	delete[] frequency;
+	delete[] nonZeroFrequencies;
 	return 0;
 }
 

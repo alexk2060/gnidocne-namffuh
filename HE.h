@@ -27,7 +27,7 @@ class HE{
 		void setBits(encode* a);
 		void insert(Node n);
 		Node remove();
-		void fillE(Node* n, int i);
+		void fillE(encode* n, int i);
 		void invariant();
 		encode* getE();
 
