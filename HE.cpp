@@ -7,6 +7,7 @@ using namespace std;
 		h = input;
 		holder = NULL;
 		e = new encode[28];
+	//	size = 28;
 	}
 	
 	void HE::setBits(encode* a){
@@ -51,7 +52,8 @@ using namespace std;
 	void HE::fillE(Node* n, int i){
 		if(n == NULL)
 			return;
-		e[i] = new encode(n);
+		encode *tmp = new encode(n);
+		e[i] = *tmp;
 		fillE(n->getLeft(),i*2);
 		fillE(n->getRight(),(i*2+1));
 	}
@@ -67,6 +69,6 @@ using namespace std;
 		}
 	}
 
-	encode* HE::getE(){
+	HE::encode* HE::getE(){
 		return e;
 	}

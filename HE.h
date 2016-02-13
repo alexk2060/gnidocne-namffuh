@@ -11,19 +11,20 @@ class HE{
 				n= new Node();
 				bit = "";
 			}
-			encode(Node input):n(input){};
-			Node n;
+			encode(Node* input):n(input){};
+			Node* n;
 			std::string bit;
 		};
 		Heap h;
-		encode[28] e;
+		encode* e;
+		//int size;
 		Node* holder;
 
 		
 	public:
 		
 		HE(Heap input);
-		void setBits();
+		void setBits(encode* a);
 		void insert(Node n);
 		Node remove();
 		void fillE(Node* n, int i);
