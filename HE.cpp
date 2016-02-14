@@ -3,11 +3,10 @@
 
 using namespace std;
 
-	HE::HE(Heap input){
+	HE::HE(Heap input, int size){
 		h = input;
 		holder = NULL;
-		e = new encode[28];
-	//	size = 28;
+		e = new encode[size];
 	}
 	
 	void HE::setBits(encode* a){
@@ -27,22 +26,6 @@ using namespace std;
 		}
 	}
 
-	void HE::insert(Node n){
-		if (holder == NULL){
-			holder = &n;
-			return;
-		}
-		else{
-			//whatever was first goes left and the second one goes right
-			Node* internal = new Node('!');
-			int newNumber = n.getFreq() + holder->getFreq();
-			internal->setFreq(newNumber);
-			internal->setLeft(holder);
-			internal->setRight(&n);
-			holder = internal;
-		}
-	}
-
 	Node HE::remove(){
 		Node* t = holder;
 		holder = NULL;
@@ -50,35 +33,60 @@ using namespace std;
 	}
 
 	void HE::fillE(Node* n, int i){
-		cout << "fillE Starts " << i << " " << endl;
 		if(n == NULL)
-			return;
-		cout << n->getC() << endl;
+			return;//
 		if(n->getLeft() == NULL && n->getRight()== NULL){
 			encode tmp(n);
 			for(int j = 0; j< 28; j++){
-				if(e[j].n->getC() =='\0'){
+				if(e[j].n->getC()=='\0'){
 					e[j] = tmp;
 					break;
 				}
 			}
 		}
-		if(n->getLeft() != NULL)
-			fillE(n->getLeft(),i*2);
-		if(n->getRight() != NULL)
-			fillE(n->getRight(),(i*2+1));
+		fillE(n->getLeft(),i*2);
+		fillE(n->getRight(),(i*2+1));
 		return;
 	}
 
+	void HE::insert(Node n){
+		if (holder == NULL){
+			holder = &n;
+			//right node child
+			return;
+		}
+		else{
+			//whatever was first goes left and the second one goes right
+			Node* internal = new Node('!');
+			int newNumber = n.getFreq() + holder->getFreq();
+			internal->setFreq(newNumber);
+			internal->setRight(holder);
+			internal->setLeft(&n);
+			holder = internal;
+			cout << internal->getFreq() << " " << internal->getC() << endl;
+			cout << internal->getLeft()->getFreq() << " "  << internal->getLeft()->getC() << endl;
+			cout << internal->getRight()->getFreq() << " "  << internal->getRight()->getC() << endl;
+		}
+	}
+
+
 	void HE::invariant(){
 		while(h.getNumElements()>1){
- 			insert(h.deleteMin());
-			insert(h.deleteMin());
-			Node t = remove();
-			h.insert(t);
+			h.print();
+			Node right = h.deleteMin();
+			Node left = h.deleteMin();
+			cout << "right one is " << right.getC() << " " << left.getC() << endl;
+			h.print();
+ 			cout << "\n";
+			Node* internal = new Node('!');
+			internal->setFreq(right.getFreq()+left.getFreq());
+			internal->setRight(&right);
+			internal->setLeft(&left);
+			h.insert(*internal);
+ 			/*
 			if(h.getNumElements() == 1){
 				holder = &t;
-			}
+			}*/
 		}
 	}
 

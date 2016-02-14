@@ -23,7 +23,7 @@ class HE{
 		
 	public:
 		
-		HE(Heap input);
+		HE(Heap input, int size);
 		void setBits(encode* a);
 		void insert(Node n);
 		Node remove();
