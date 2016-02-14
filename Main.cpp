@@ -80,27 +80,27 @@ int main(int argc,char *argv[])
 		Heap h(nonZeroFrequencies, uniqueChars);
 		h.print();
 		//pass it over to HE
-		/*
+		//cout << "\n";
+		//cout << nonZeroFrequencies[0].getFreq() << "\n";
+
 		HE var(h);
 		var.invariant();
-		var.fillE(var.getHolder(), 1);
+		//var.fillE(var.getHolder(), 1);
 		var.setBits(var.getE());
+		cout << "after he" << endl;
 		string output ="";
-		for(int i = 0; cInput[i] != '\0'; i++){
+		for(int i = 0; input[i] != '\0'; i++){
 			for(int j = 0; j < 27; j++){
 				if(var.getE()[j].n->getC()==input[i])
 					output += var.getE()[j].n->getC();
 			}
 		}
-
-		cout<< "print encoded string" << endl;
 		cout << output;
-		*/
+		
 	}
 	catch(exception& ex)
 	{
 		cerr << ex.what() << endl;
 	}
-	delete[] nonZeroFrequencies;
 	return 0;
 }
