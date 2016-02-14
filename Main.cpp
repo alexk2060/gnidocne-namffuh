@@ -51,14 +51,19 @@ int main(int argc,char *argv[])
 	//update frequencies of chars in frequency by iterating through array
 	int uniqueChars = 0;
 	//const char* cInput = input.c_str();
-	for(int i=0; input[i] != '\0'; i++){
-		int x = (int)input[i] - 96;
-		if(frequency[x].getFreq() == 0)
-			++uniqueChars;
-		if(x < 0){
-			frequency[27].setFreq(frequency[27].getFreq()+1);
-		}
-		frequency[x].setFreq(frequency[x].getFreq()+1);
+	for(int i=0; i < input.length(); i++){
+		int x = input[i] - 96;
+		
+		if(x > 0 && frequency[x].getFreq() == 0)
+			uniqueChars++;
+		if(x < 0 && frequency[27].getFreq() == 0)
+			uniqueChars++;
+
+		if(x > 0)
+			frequency[x].setFreq(frequency[x].getFreq() + 1);
+		else
+			frequency[27].setFreq(frequency[27].getFreq() + 1);
+	
 	}	
 
 	//------------------------------------------
@@ -72,9 +77,13 @@ int main(int argc,char *argv[])
 			++count;
 		}
 	}
+
+
 	for(int i = 0; i < uniqueChars+1; i++){
 		cout << i << " " << nonZeroFrequencies[i].getC() << endl;
 	}
+
+
 	cout << "and uniquechars is " << uniqueChars << endl;
 	try
 	{
