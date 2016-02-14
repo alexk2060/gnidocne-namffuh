@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall
+CXXFLAGS=-Wall -g
 			#-std=c++11
 BINARIES=prog2
 
