@@ -64,7 +64,9 @@ void Heap::percolateDown(int location){
 	int child = location;
 	for(location; 2*location <= numElements; location = child){
 		child = this->getLeftChild(location);
-		if(child != numElements && this->arr[child+1].getFreq() < this->arr[child].getFreq())
+		if(child != numElements && this->arr[child+1].getFreq() == this->arr[child].getFreq())
+			++child;
+		else if(child != numElements && this->arr[child+1].getFreq() < this->arr[child].getFreq())
 			++child;
 		if(this->arr[child].getFreq() < this->arr[location].getFreq()){
 			this->arr[location] = this->arr[child];
