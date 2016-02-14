@@ -43,9 +43,8 @@ int main(int argc,char *argv[])
 		}
 		else
 			frequency[i].setC(i+96);
-		cout << frequency[i].getC() << endl;
 	}
-	//-------------------
+	//-----------------------------------------
 	cout << "\n";
 	
 	//-----------------------------------------
@@ -62,11 +61,12 @@ int main(int argc,char *argv[])
 		frequency[x].setFreq(frequency[x].getFreq()+1);
 	}	
 
-	//--------------------------
+	//------------------------------------------
 	//getting all non zero elements in array
-	Node* nonZeroFrequencies = new Node[uniqueChars];
-	int count = 0;
-	for(int i=0; i<28; i++){
+	Node* nonZeroFrequencies = new Node[uniqueChars+1];
+	int count = 1;
+	cout << "# of chars" << uniqueChars << "\n";
+	for(int i=1; i<28; i++){
 		if(frequency[i].getFreq() > 0){
 			nonZeroFrequencies[count] = frequency[i];
 			++count;
@@ -75,6 +75,7 @@ int main(int argc,char *argv[])
 	cout << "\n";
 	try
 	{
+		//for()
 		//complete heap
 		Heap h(nonZeroFrequencies, uniqueChars);
 		h.print();
