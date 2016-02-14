@@ -65,27 +65,25 @@ int main(int argc,char *argv[])
 	//getting all non zero elements in array
 	Node* nonZeroFrequencies = new Node[uniqueChars+1];
 	int count = 1;
-	cout << "# of chars" << uniqueChars << "\n";
+	cout << "# of chars " << uniqueChars << "\n";
 	for(int i=1; i<28; i++){
 		if(frequency[i].getFreq() > 0){
 			nonZeroFrequencies[count] = frequency[i];
 			++count;
 		}
 	}
-	cout << "\n";
+	for(int i = 0; i < uniqueChars+1; i++){
+		cout << i << " " << nonZeroFrequencies[i].getC() << endl;
+	}
+	cout << "and uniquechars is " << uniqueChars << endl;
 	try
 	{
 		//for()
 		//complete heap
 		Heap h(nonZeroFrequencies, uniqueChars);
-		h.print();
-		//pass it over to HE
-		//cout << "\n";
-		//cout << nonZeroFrequencies[0].getFreq() << "\n";
-
-		HE var(h);
-		var.invariant();
-		//var.fillE(var.getHolder(), 1);
+		cout << "Heap successfully built" << endl;
+		h.invariant();
+		/*
 		var.setBits(var.getE());
 		cout << "after he" << endl;
 		string output ="";
@@ -95,7 +93,8 @@ int main(int argc,char *argv[])
 					output += var.getE()[j].n->getC();
 			}
 		}
-		cout << output;
+		*/
+		//cout << output;
 		
 	}
 	catch(exception& ex)

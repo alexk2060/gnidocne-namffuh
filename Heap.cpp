@@ -19,7 +19,6 @@ Heap::Heap(Node *arr, int currentSize){
 	this->arr = arr;
 	for(int i = numElements; i > 0; i--)
 		percolateDown(i);
-
 }
 
 int Heap::getParent(const int &child) {
@@ -39,9 +38,9 @@ int Heap::getRightChild(const int &parent) {
 
 void Heap::insert(Node const& n){
 	if(numElements < size){
+		++(this->numElements);
 		this->arr[numElements] = n;
 		percolateUp(numElements);
-		++(this->numElements);
 	}
 	else{
 		std::cout << "No more space to insert items. Write code to resize heap \n";
@@ -51,8 +50,8 @@ void Heap::insert(Node const& n){
 
 Node Heap::deleteMin(){
 	Node tmp = this->arr[1];
-	this->numElements = this->numElements - 1;
 	this->arr[1] = this->arr[numElements];
+	this->numElements = this->numElements - 1;
 	this->percolateDown(1);
 	return tmp;
 }
@@ -74,7 +73,6 @@ void Heap::percolateDown(int location){
 		}
 		else
 			break;
-
 	}
 
 }
@@ -96,11 +94,37 @@ void Heap::percolateUp(int location){
 
 //print out each array level 
 void Heap::print(){
-	for(int i = 1; i<this->numElements+1; i++)
+	for(int i = 1; i<=numElements; i++)
 		std::cout << i << ":	"<< this->arr[i].getC() << ", "<< this->arr[i].getFreq() << std::endl;
 }
 
+	void Heap::invariant(){
+		while(getNumElements()>1){
+			std::cout << "before: " << numElements << std::endl;			
+			Node right = deleteMin();
+			Node left = deleteMin();
+			std::cout << "right one is " << right.getC() << " " << left.getC() << std::endl;
+ 			std::cout << "\n";
+			Node* internal = new Node('!');
+			internal->setFreq(right.getFreq()+left.getFreq());
+			internal->setRight(&right);
+			internal->setLeft(&left);
+			std::cout << "after two deletes: " << numElements << std::endl;
+			print();
+			insert(*internal);
+			std::cout << "after two deletes and one insert: " << numElements << std::endl;
+			print();			/*
+			if(getNumElements() == 1){
+				holder = &t;
+			}
+			*/
+		}
+	}
 
-
-
-
+	void Heap::printTree(Node* root){
+		if(root == NULL)
+			return;
+		std::cout << root->getC() << std::endl;
+		printTree(root->getLeft());
+		printTree(root->getRight());
+	}

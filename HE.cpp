@@ -6,22 +6,21 @@ using namespace std;
 	HE::HE(Heap input, int size){
 		h = input;
 		holder = NULL;
-		e = new encode[size];
 	}
 	
-	void HE::setBits(encode* a){
+	void HE::setBits(Node* a){
 		for(int i = 1; i < 28; i++){
 			if(i==1)
-				a[1].bit="";
+				a[1].setBit("");
 			if(i==2)
-				a[2].bit = "1";
+				a[2].setBit("1");
 			if(i==3)
-				a[3].bit = "0";
+				a[3].setBit("0");
 			else{
 				if(i%2==0)
-					a[i].bit = a[i/2].bit + "1";
+					a[i].setBit(a[i/2].getBit() + "1");
 				else
-					a[i].bit = a[i/2].bit + "0";
+					a[i].setBit(a[i/2].getBit() + "0");
 			}
 		}
 	}
@@ -31,7 +30,7 @@ using namespace std;
 		holder = NULL;
 		return *(t);
 	}
-
+	/*
 	void HE::fillE(Node* n, int i){
 		if(n == NULL)
 			return;//
@@ -48,6 +47,7 @@ using namespace std;
 		fillE(n->getRight(),(i*2+1));
 		return;
 	}
+	*/
 
 	void HE::insert(Node n){
 		if (holder == NULL){
@@ -68,32 +68,7 @@ using namespace std;
 			cout << internal->getRight()->getFreq() << " "  << internal->getRight()->getC() << endl;
 		}
 	}
-
-
-	void HE::invariant(){
-		while(h.getNumElements()>1){
-			h.print();
-			Node right = h.deleteMin();
-			Node left = h.deleteMin();
-			cout << "right one is " << right.getC() << " " << left.getC() << endl;
-			h.print();
- 			cout << "\n";
-			Node* internal = new Node('!');
-			internal->setFreq(right.getFreq()+left.getFreq());
-			internal->setRight(&right);
-			internal->setLeft(&left);
-			h.insert(*internal);
- 			/*
-			if(h.getNumElements() == 1){
-				holder = &t;
-			}*/
-		}
-	}
-
-	HE::encode* HE::getE(){
-		return e;
-	}
-
+	
 	Node* HE::getHolder(){
 		return holder;
 	}

@@ -6,30 +6,17 @@
 
 class HE{
 	private:
-		struct encode{
-			encode(){
-				n= new Node();
-				bit = "";
-			}
-			encode(Node* input):n(input){};
-			Node* n;
-			std::string bit;
-		};
 		Heap h;
-		encode* e;
-		//int size;
 		Node* holder;
-
 		
 	public:
 		
 		HE(Heap input, int size);
-		void setBits(encode* a);
+		void setBits(Node* a);
 		void insert(Node n);
 		Node remove();
-		void fillE(Node* n, int i);
-		void invariant();
-		encode* getE();
+		//void fillE(Node* n, int i);
+		//void invariant();
 		Node* getHolder();
 		void printNodes(Node* n);
 
