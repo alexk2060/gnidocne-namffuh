@@ -7,9 +7,9 @@ BINARIES=heap
 
 
 test:${BINARIES}
-	./heap
+	./prog2
 
-heap: Main.o HE.o Heap.o
+prog2: Main.o HE.o Heap.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 
