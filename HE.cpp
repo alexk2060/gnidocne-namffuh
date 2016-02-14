@@ -50,22 +50,35 @@ using namespace std;
 	}
 
 	void HE::fillE(Node* n, int i){
+		cout << "fillE Starts " << i << " " << endl;
 		if(n == NULL)
 			return;
-		encode *tmp = new encode(n);
-		e[i] = *tmp;
-		fillE(n->getLeft(),i*2);
-		fillE(n->getRight(),(i*2+1));
+		cout << n->getC() << endl;
+		if(n->getLeft() == NULL && n->getRight()== NULL){
+			encode tmp(n);
+			for(int j = 0; j< 28; j++){
+				if(e[j].n->getC() =='\0'){
+					e[j] = tmp;
+					break;
+				}
+			}
+		}
+		if(n->getLeft() != NULL)
+			fillE(n->getLeft(),i*2);
+		if(n->getRight() != NULL)
+			fillE(n->getRight(),(i*2+1));
+		return;
 	}
 
 	void HE::invariant(){
-		while(h.getNumElements()!=1){
-			insert(h.deleteMin());
+		while(h.getNumElements()>1){
+ 			insert(h.deleteMin());
 			insert(h.deleteMin());
 			Node t = remove();
 			h.insert(t);
-			if(h.getNumElements() == 1)
+			if(h.getNumElements() == 1){
 				holder = &t;
+			}
 		}
 	}
 
@@ -75,4 +88,13 @@ using namespace std;
 
 	Node* HE::getHolder(){
 		return holder;
+	}
+
+	void HE::printNodes(Node* n){
+		if(n==NULL)
+			return;
+		cout << n->getFreq() << " " << n->getC() << endl;
+		printNodes(n->getLeft());
+		printNodes(n->getRight());
+		return;
 	}

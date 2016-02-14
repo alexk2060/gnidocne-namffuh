@@ -31,6 +31,7 @@ class HE{
 		void invariant();
 		encode* getE();
 		Node* getHolder();
+		void printNodes(Node* n);
 
 };
 

@@ -42,7 +42,6 @@ void Heap::insert(Node const& n){
 		this->arr[numElements] = n;
 		percolateUp(numElements);
 		++(this->numElements);
-		std::cout<< "success" << std::endl;
 	}
 	else{
 		std::cout << "No more space to insert items. Write code to resize heap \n";

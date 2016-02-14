@@ -33,6 +33,7 @@ int main(int argc,char *argv[])
 	freopen(inputFile,"r",stdin);     // if you use this line, it merely redirects stdin to input.txt file; simple as that
 	string input = "";
 	cin >> input;
+	input = "i like apples";
 
 	Node frequency[28];
 	//initialize each char value in frequency to a-z and space
@@ -73,11 +74,11 @@ int main(int argc,char *argv[])
 	{
 		//complete heap
 		Heap h(nonZeroFrequencies, uniqueChars);
-		
+
 		//pass it over to HE
 		HE var(h);
 		var.invariant();
-		var.fillE(var.getHolder(), 0); //<------fix
+		var.fillE(var.getHolder(), 1);
 		var.setBits(var.getE());
 		string output ="";
 		for(int i = 0; cInput[i] != '\0'; i++){
@@ -93,8 +94,6 @@ int main(int argc,char *argv[])
 	{
 		cerr << ex.what() << endl;
 	}
-
 	delete[] nonZeroFrequencies;
 	return 0;
 }
-
