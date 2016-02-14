@@ -42,24 +42,27 @@ int main(int argc,char *argv[])
 			frequency[i].setC(32); //32 is ascii value for space
 		}
 		else
-			frequency[i].setC(i+97);
+			frequency[i].setC(i+96);
+		cout << frequency[i].getC() << endl;
 	}
+	//-------------------
+	cout << "\n";
 	
 	//-----------------------------------------
 	//update frequencies of chars in frequency by iterating through array
 	int uniqueChars = 0;
-	const char* cInput = input.c_str();
-	for(int i=0; cInput[i] != '\0'; i++){
-		int x = (int)input[i] - 92;
+	//const char* cInput = input.c_str();
+	for(int i=0; input[i] != '\0'; i++){
+		int x = (int)input[i] - 96;
 		if(frequency[x].getFreq() == 0)
 			++uniqueChars;
 		if(x < 0){
 			frequency[27].setFreq(frequency[27].getFreq()+1);
 		}
 		frequency[x].setFreq(frequency[x].getFreq()+1);
-	}
-	//-----------------------------------------
+	}	
 
+	//--------------------------
 	//getting all non zero elements in array
 	Node* nonZeroFrequencies = new Node[uniqueChars];
 	int count = 0;
@@ -69,13 +72,14 @@ int main(int argc,char *argv[])
 			++count;
 		}
 	}
-	
+	cout << "\n";
 	try
 	{
 		//complete heap
 		Heap h(nonZeroFrequencies, uniqueChars);
-
+		h.print();
 		//pass it over to HE
+		/*
 		HE var(h);
 		var.invariant();
 		var.fillE(var.getHolder(), 1);
@@ -87,8 +91,10 @@ int main(int argc,char *argv[])
 					output += var.getE()[j].n->getC();
 			}
 		}
+
 		cout<< "print encoded string" << endl;
 		cout << output;
+		*/
 	}
 	catch(exception& ex)
 	{
