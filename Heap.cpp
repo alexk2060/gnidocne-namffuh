@@ -61,7 +61,7 @@ Node Heap::deleteMin(){
 void Heap::percolateDown(int location){
 	Node tmp = this->arr[location];
 	int child = location;
-	for(location; 2*location <= numElements; location = child){
+	for(; 2*location <= numElements; location = child){
 		child = this->getLeftChild(location);
 		if(child != numElements && this->arr[child+1].getFreq() == this->arr[child].getFreq())
 			++child;
@@ -81,7 +81,7 @@ void Heap::percolateDown(int location){
 void Heap::percolateUp(int location){
 	Node tmp = this->arr[location];
 	int parent = location;
-	for(location; location/2 > 0; location = parent){
+	for(; location/2 > 0; location = parent){
 		parent = this->getParent(location);
 		if(this->arr[location].getFreq() < this->arr[parent].getFreq() ){
 			this->arr[location] = this->arr[parent];
@@ -120,11 +120,30 @@ void Heap::print(){
 			*/
 		}
 	}
+	void Heap::assignBits(Node* arr, int size){
+		arr[1].setBit("");
+		arr[2].setBit("1");
+		arr[3].setBit("2");
+		for(int i = 4; i<size; i++){
+			if(i%2==0)
+				arr[i].setBit(arr[i/2].getBit()+"1");
+			else
+				arr[i].setBit(arr[i/2].getBit()+"0");
+		}
+	}
 
-	void Heap::printTree(Node* root){
+	void Heap::formArray(Node*arr, Node* root, int index){
 		if(root == NULL)
 			return;
-		std::cout << root->getC() << std::endl;
-		printTree(root->getLeft());
-		printTree(root->getRight());
+		arr[index] = *root;
+		formArray(arr, root->getLeft(), index*2);
+		formArray(arr, root->getRight(), index*2+1);
+	}
+
+	int Heap::totalNodes(Node* a){
+		if(a==NULL)
+			return 0;
+		else{
+			return 1+totalNodes(a->getLeft()) + totalNodes(a->getRight());
+		}
 	}

@@ -34,7 +34,9 @@ public:
 	int getNumElements(){return this->numElements;}
 	Node* getArr(){return this->arr;}
 	void invariant();
-	void printTree(Node* root);
+	void assignBits(Node* arr, int size);
+	void formArray(Node* arr, Node* root, int index);
+	int totalNodes(Node* a);
 };
 
 #endif 
