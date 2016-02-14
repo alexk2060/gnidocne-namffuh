@@ -94,7 +94,7 @@ void Heap::percolateUp(int location){
 
 //print out each array level 
 void Heap::print(){
-	for(int i = 1; i<this->numElements; i++)
+	for(int i = 1; i<this->numElements+1; i++)
 		std::cout << i << ":	"<< this->arr[i].getC() << ", "<< this->arr[i].getFreq() << std::endl;
 }
 
