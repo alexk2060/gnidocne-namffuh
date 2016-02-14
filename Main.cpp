@@ -86,37 +86,14 @@ int main(int argc,char *argv[])
 
 
 	cout << "and uniquechars is " << uniqueChars << endl;
-	try
-	{
-		//for()
-		//complete heap
+
 		Heap h(nonZeroFrequencies, uniqueChars);
 		cout << "Heap successfully built" << endl;
 		h.invariant();
-		Node* root = &(h.getArr()[1]);
-		int size = h.totalNodes(root);
-		Node replacement[size];
-		h.formArray(replacement, root, size);
-		h.assignBits(replacement, size);
 		h.print();
-		/*
-		var.setBits(var.getE());
-		cout << "after he" << endl;
-		string output ="";
-		for(int i = 0; input[i] != '\0'; i++){
-			for(int j = 0; j < 27; j++){
-				if(var.getE()[j].n->getC()==input[i])
-					output += var.getE()[j].n->getC();
-			}
-		}
-		*/
-		//cout << output;
 		
-	}
-	catch(exception& ex)
-	{
-		cerr << ex.what() << endl;
-	}
+		
+	
 	is.close();
 	return 0;
 }
