@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <fstream>
 #include <exception>
 #include <string>
 #include <cstdio>
@@ -29,11 +30,14 @@ int main(int argc,char *argv[])
 		inputFile = argv[2];
 		encodedFile = argv[3];
 	}
-	
-	freopen(inputFile,"r",stdin);     // if you use this line, it merely redirects stdin to input.txt file; simple as that
+	ifstream is;
+	is.open(inputFile);
 	string input = "";
-	cin >> input;
-	input = "i like apples";
+	while(getline(is, input));
+	cout << input << endl;
+	is.close();
+	//input = "i like apples";
+
 
 	Node frequency[28];
 	//initialize each char value in frequency to a-z and space
@@ -46,14 +50,12 @@ int main(int argc,char *argv[])
 	}
 	//-----------------------------------------
 	cout << "\n";
-	
-	//-----------------------------------------
+
 	//update frequencies of chars in frequency by iterating through array
 	int uniqueChars = 0;
-	//const char* cInput = input.c_str();
 	for(int i=0; i < input.length(); i++){
 		int x = input[i] - 96;
-		
+
 		if(x > 0 && frequency[x].getFreq() == 0)
 			uniqueChars++;
 		if(x < 0 && frequency[27].getFreq() == 0)
@@ -65,7 +67,6 @@ int main(int argc,char *argv[])
 			frequency[27].setFreq(frequency[27].getFreq() + 1);
 	
 	}	
-
 	//------------------------------------------
 	//getting all non zero elements in array
 	Node* nonZeroFrequencies = new Node[uniqueChars+1];
@@ -110,5 +111,7 @@ int main(int argc,char *argv[])
 	{
 		cerr << ex.what() << endl;
 	}
+	is.close();
 	return 0;
 }
+
