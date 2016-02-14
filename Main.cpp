@@ -93,6 +93,12 @@ int main(int argc,char *argv[])
 		Heap h(nonZeroFrequencies, uniqueChars);
 		cout << "Heap successfully built" << endl;
 		h.invariant();
+		Node* root = &(h.getArr()[1]);
+		int size = h.totalNodes(root);
+		Node replacement[size];
+		h.formArray(replacement, root, size);
+		h.assignBits(replacement, size);
+		h.print();
 		/*
 		var.setBits(var.getE());
 		cout << "after he" << endl;

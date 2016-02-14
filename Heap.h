@@ -37,6 +37,7 @@ public:
 	void assignBits(Node* arr, int size);
 	void formArray(Node* arr, Node* root, int index);
 	int totalNodes(Node* a);
+
 };
 
 #endif 
