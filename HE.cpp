@@ -48,45 +48,13 @@ std::string HE::encodedinput(std::string input){
 	return encoded;
 }
 
-std::string HE::findEncodedBits(std::string s, Node* r){
-	if(r == NULL)
-		return "";
-	
-	findEncodedBits(s, r->getLeft());
-	findEncodedBits(s, r->getRight());
-
-	if((r->getBit()).compare(s) == 0)
-		
-		return r->getBit();
-	
-}
-
-std::string HE::decodedOutput(std::string encodedinput){
-	std::string decoded = "";
-	for(int i = 0; i<encodedinput.length(); i++){
-		std::string encodedBits = "";
-		std::string tmp = "";
-		for(int j = i; j <encodedinput.length(); j++){
-			tmp = tmp + encodedinput[j];
-			if(encodedBits.compare("") == 0){
-				encodedBits = findEncodedBits(tmp, this->root);
-			}
-			else
-				break;
-		}
-		decoded = decoded + encodedBits;
-	}
-
-		return decoded;
-}
-
-	std::string HE::bruteForce(std::string code){
+std::string HE::bruteForce(std::string code){
 		std::string returner = "";
 		std::string temp = "";
 		for(int i = 0; i < code.length(); i++){
-			temp += code[i];
-			for(int j = 0; j < 28; j++){
-				if(encoded[j].getBit().compare(temp)){
+			temp = temp + code[i];
+			for(int j = 1; j < 28; j++){
+				if(encoded[j].getFreq() > 0 && (encoded[j].getBit().compare(temp) == 0)) {
 					returner+= encoded[j].getC();
 					temp = "";
 				}

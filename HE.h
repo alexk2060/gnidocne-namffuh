@@ -13,8 +13,8 @@ class HE{
 	public:
 		HE(Heap h); //should only have one element which is the start of the trie
 		std::string encodedinput(std::string input);
-		std::string decodedOutput(std::string encodedinput);
-		std::string findEncodedBits(std::string s, Node* r);
+		//std::string decodedOutput(std::string encodedinput);
+		//std::string findEncodedBits(std::string s, Node* r);
 		void printEncoded();
 		std::string bruteForce(std::string code);
 };
