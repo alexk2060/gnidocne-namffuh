@@ -102,21 +102,28 @@ void Heap::print(){
 
 	void Heap::invariant(){
 		while(getNumElements()>1){
-			Node right = deleteMin();
-			Node left = deleteMin();
+			Node r = deleteMin();
+			Node l = deleteMin();
+			Node* right = new Node(r);
+			Node* left = new Node(l);
 			Node* internal = new Node('!');
-			internal->setFreq(right.getFreq()+left.getFreq());
-			internal->setRight(&right);
-			internal->setLeft(&left);
+			internal->setFreq(right->getFreq()+left->getFreq());
+			internal->setRight(right);
+			internal->setLeft(left);
 			insert(*internal);
-			std::cout<<"right one: " << internal->getRight()->getC() << std::endl;
-			std::cout<<"left one: " << internal->getLeft()->getC() << std::endl;
 		}
 	}
-	void Heap::assignBit(std::string s, Node*& root){
+	void Heap::assignBit(std::string s, Node* root){
 		if(root == NULL)
 			return;
 		root->setBit(s);
 		assignBit(s+"1", root->getLeft());
 		assignBit(s+"0", root->getRight());
+	}
+	void Heap::printTree(Node* root){
+		if(root == NULL)
+			return;
+		std::cout<< root->getC() << "    " << root->getBit() << std::endl;
+		printTree(root->getLeft());
+		printTree(root->getRight());
 	}

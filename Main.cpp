@@ -94,7 +94,7 @@ int main(int argc,char *argv[])
 		h.print();
 		Node* root = &(h.getArr()[1]);
 		h.assignBit("", root);
-		
+		h.printTree(root);		
 	is.close();
 	return 0;
 }

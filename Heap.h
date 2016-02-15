@@ -34,7 +34,8 @@ public:
 	int getNumElements(){return this->numElements;}
 	Node* getArr(){return this->arr;}
 	void invariant();
-	void assignBit(std::string s, Node*& root);
+	void assignBit(std::string s, Node* root);
+	void printTree(Node* root);
 
 };
 
