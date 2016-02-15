@@ -17,16 +17,17 @@ using namespace std;
 
 int main()
 {
-	char const* inputFile = "plain.input";
-	char const* encodedFile = "encoded.input";
+	char const* inputFile = "plain.input"; //plain text
+	char const* encodedFile = "encoded.input"; //bits
 	
 	ifstream is;
 	is.open(inputFile);
 	string input = "";
-	while(getline(is, input));
+
+	while(getline(is, input))
+		;
 	cout << input << endl;
-	is.close();
-	//input = "i like apples";
+	is.close(); //close input stream for plain.input
 
 
 	Node frequency[28];
@@ -77,19 +78,32 @@ int main()
 
 	cout << "and uniquechars is " << uniqueChars << endl;
 
-		Heap h(nonZeroFrequencies, uniqueChars);
-		cout << "Heap successfully built" << endl;
-		h.print();
-		h.invariant();
-		h.print();
-		Node* root = &(h.getArr()[1]);
-		h.assignBit("", root);
-		//h.printTree(root);		
-		HE he(h);
+	Heap h(nonZeroFrequencies, uniqueChars);
+	cout << "Heap successfully built" << endl;
+	h.print();
+	h.invariant();
+	h.print();
+	Node* root = &(h.getArr()[1]);
+	h.assignBit("", root);
+	//h.printTree(root);		
+	HE he(h);
 
-		string encodedPart = he.encodedinput(input);
-		cout << "encoded part: " << encodedPart << endl;
+	string encodedPart = he.encodedinput(input);
+	cout << "encoded part: " << encodedPart << endl;
+//---------------------------------------------------------------------------
+	//decoded part
+	cout << "--------------------------------------------------" << endl;
+	string encodedIn = "";
+	is.open(encodedFile);
+	while(getline(is, encodedIn))
+		;
+	cout << "\ninput: "<<encodedIn << endl;
 	is.close();
+
+	cout << "next line breaks\n\n" << endl;
+	string decodedPart = he.decodedOutput(encodedIn);
+	cout << "decoded part: " << decodedPart << endl;
+	
 	return 0;
 }
 
