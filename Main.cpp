@@ -102,8 +102,9 @@ int main()
 	is.close();
 
 	cout << "next line breaks\n\n" << endl;
-	string decodedPart = he.decodedOutput(encodedIn);
-	cout << "decoded part: " << decodedPart << endl;
+	string complete = he.bruteForce(encodedIn);
+	//string decodedPart = he.decodedOutput(encodedIn);
+	cout << "decoded part: " << complete << endl;
 	
 	return 0;
 }

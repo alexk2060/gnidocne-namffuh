@@ -80,6 +80,21 @@ std::string HE::decodedOutput(std::string encodedinput){
 		return decoded;
 }
 
+	std::string HE::bruteForce(std::string code){
+		std::string returner = "";
+		std::string temp = "";
+		for(int i = 0; i < code.length(); i++){
+			temp += code[i];
+			for(int j = 0; j < 28; j++){
+				if(encoded[j].getBit().compare(temp)){
+					returner+= encoded[j].getC();
+					temp = "";
+				}
+			}
+		}
+		return returner;
+	}
+
 void HE::printEncoded(){
 	for(int i=1; i<28; i++){
 		std::cout << encoded[i].getC() << " , " << encoded[i].getBit() << std::endl;
