@@ -92,6 +92,7 @@ int main()
 	cout << "encoded part: " << encodedPart << endl;
 //---------------------------------------------------------------------------
 	//decoded part
+	
 	cout << "--------------------------------------------------" << endl;
 	string encodedIn = "";
 	is.open(encodedFile);
