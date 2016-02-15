@@ -86,7 +86,7 @@ int main()
 	is.close();
 
 	string complete = he.bruteForce(encodedIn);
-	//cout << "decoded part: " ;
+	//string complete = he.fasterImp(encodedIn);
 	cout << complete << endl;
 	
 	return 0;

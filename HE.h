@@ -17,6 +17,7 @@ class HE{
 		//std::string findEncodedBits(std::string s, Node* r);
 		void printEncoded();
 		std::string bruteForce(std::string code);
+		std::string fasterImp(std::string code);
 };
 
 #endif
