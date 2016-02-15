@@ -26,7 +26,6 @@ int main()
 
 	while(getline(is, input))
 		;
-	cout << input << endl;
 	is.close(); //close input stream for plain.input
 
 
@@ -39,9 +38,7 @@ int main()
 		else
 			frequency[i].setC(i+96);
 	}
-	//-----------------------------------------
-	cout << "\n";
-
+	
 	//update frequencies of chars in frequency by iterating through array
 	int uniqueChars = 0;
 	for(int i=0; i < input.length(); i++){
@@ -58,11 +55,11 @@ int main()
 			frequency[27].setFreq(frequency[27].getFreq() + 1);
 	
 	}	
-	//------------------------------------------
+
 	//getting all non zero elements in array
+	
 	Node* nonZeroFrequencies = new Node[uniqueChars+1];
 	int count = 1;
-	cout << "# of chars " << uniqueChars << "\n";
 	for(int i=1; i<28; i++){
 		if(frequency[i].getFreq() > 0){
 			nonZeroFrequencies[count] = frequency[i];
@@ -70,41 +67,27 @@ int main()
 		}
 	}
 
-
-	for(int i = 0; i < uniqueChars+1; i++){
-		cout << i << " " << nonZeroFrequencies[i].getC() << endl;
-	}
-
-
-	cout << "and uniquechars is " << uniqueChars << endl;
-
 	Heap h(nonZeroFrequencies, uniqueChars);
-	cout << "Heap successfully built" << endl;
-	h.print();
 	h.invariant();
-	h.print();
 	Node* root = &(h.getArr()[1]);
 	h.assignBit("", root);
-	//h.printTree(root);		
 	HE he(h);
 
 	string encodedPart = he.encodedinput(input);
-	cout << "encoded part: " << encodedPart << endl;
+	//cout << "encoded part: ";
+	cout << encodedPart << endl;
 //---------------------------------------------------------------------------
 	//decoded part
 	
-	cout << "--------------------------------------------------" << endl;
 	string encodedIn = "";
 	is.open(encodedFile);
 	while(getline(is, encodedIn))
 		;
-	cout << "\ninput: "<<encodedIn << endl;
 	is.close();
 
-	cout << "next line breaks\n\n" << endl;
 	string complete = he.bruteForce(encodedIn);
-	//string decodedPart = he.decodedOutput(encodedIn);
-	cout << "decoded part: " << complete << endl;
+	//cout << "decoded part: " ;
+	cout << complete << endl;
 	
 	return 0;
 }

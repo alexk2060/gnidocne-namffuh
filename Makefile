@@ -6,8 +6,8 @@ BINARIES=prog2
 
 
 
-test:${BINARIES}
-	./prog2
+#test:${BINARIES}
+#	./prog2
 
 prog2: Main.o HE.o Heap.o
 	$(CXX) $(CXXFLAGS) $^ -o $@

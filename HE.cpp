@@ -13,7 +13,6 @@ HE::HE(Heap h){
 			encoded[i].setC(i+96);
 	}
 	this->buildEncoded(this->root);
-	printEncoded();
 }
 
 
