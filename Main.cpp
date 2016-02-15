@@ -15,21 +15,11 @@ using namespace std;
 
 
 
-int main(int argc,char *argv[])
+int main()
 {
-	char const* inputFile;
-	char const* encodedFile = "";
-	if(argc < 2){
-		inputFile = "plain.input";
-		encodedFile = "encoded.input";
-	}
-	else if(argc == 2){
-		inputFile = argv[2];
-	}
-	else{
-		inputFile = argv[2];
-		encodedFile = argv[3];
-	}
+	char const* inputFile = "plain.input";
+	char const* encodedFile = "encoded.input";
+	
 	ifstream is;
 	is.open(inputFile);
 	string input = "";
