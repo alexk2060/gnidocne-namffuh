@@ -92,7 +92,6 @@ int main(int argc,char *argv[])
 		h.invariant();
 		h.print();
 		
-		
 	
 	is.close();
 	return 0;
