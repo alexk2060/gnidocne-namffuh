@@ -15,25 +15,36 @@ class Node{
 		Node(){
 			c='\0';
 			freq = 0;
+			bit = "";
 			left = NULL;
 			right = NULL;
 		}
 		Node(char a){
 			c=a;
 			freq=0;
+			bit = "";
 			left = NULL;
 			right = NULL;
-		};
+		}
+		Node &operator=(Node const &rhs){
+			this->c = rhs.getC();
+			this->freq = rhs.getFreq();
+			this->bit = rhs.getBit();
+			this->left = rhs.getLeft();
+			this->right = rhs.getRight();
+			return *this;
+
+		}
 		void setC(char character){c=character;};
 		void setFreq(int f){freq = f;};
 		void setBit(std::string s){bit = s;};
 		void setLeft(Node* n){this->left = n;};
 		void setRight(Node* n){this->right = n;};
-		char getC(){return c;};
-		int getFreq(){return freq;};
-		std::string getBit(){return bit;};
-		Node* getLeft(){return left;};
-		Node* getRight(){return right;};		
+		char getC() const {return c;};
+		int getFreq() const {return freq;};
+		std::string getBit() const {return bit;};
+		Node* getLeft() const {return left;};
+		Node* getRight() const {return right;};		
 };
 
 #endif
