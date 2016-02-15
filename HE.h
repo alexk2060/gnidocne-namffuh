@@ -15,7 +15,7 @@ class HE{
 		std::string encodedinput(std::string input);
 		std::string decodedOutput(std::string encodedinput);
 		std::string findEncodedBits(char c, Node* r);
-
+		void printEncoded();
 
 };
 

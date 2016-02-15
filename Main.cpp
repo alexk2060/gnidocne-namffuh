@@ -95,6 +95,10 @@ int main(int argc,char *argv[])
 		Node* root = &(h.getArr()[1]);
 		h.assignBit("", root);
 		h.printTree(root);		
+		HE he(h);
+
+		string encodedPart = he.encodedinput(input);
+		cout << "encoded part: " << encodedPart << endl;
 	is.close();
 	return 0;
 }

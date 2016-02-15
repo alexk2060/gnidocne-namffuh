@@ -13,6 +13,7 @@ HE::HE(Heap h){
 			encoded[i].setC(i+96);
 	}
 	this->buildEncoded(this->root);
+	printEncoded();
 }
 
 
@@ -38,6 +39,7 @@ std::string HE::encodedinput(std::string input){
 			encoded = encoded + this->encoded[27].getBit();
 
 	}
+	std::cout << "encoeded: " << encoded << std::endl;
 	return encoded;
 }
 
@@ -57,6 +59,12 @@ std::string HE::decodedOutput(std::string encodedinput){
 	for(int i = 0; i<encodedinput.length(); i++)
 		decoded = decoded + findEncodedBits(encodedinput[i], this->root);
 
+}
+
+void HE::printEncoded(){
+	for(int i=1; i<28; i++){
+		std::cout << encoded[i].getC() << " , " << encoded[i].getBit() << std::endl;
+	}
 }
 
 
