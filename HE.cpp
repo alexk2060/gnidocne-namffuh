@@ -22,24 +22,29 @@ void HE::buildEncoded(Node* r){
 		return;
 	buildEncoded(r->getLeft());
 	buildEncoded(r->getRight());
-	int asciiValue = r->getC() - 96;
-	if(asciiValue > 96 && asciiValue < 123)
+	int asciiValue = r->getC() -96;
+	if(asciiValue > 0 && asciiValue < 27){
+	//	std::cout << r->getC() << " , " << r->getBit() << std::endl;
+	//	Node* tmp = new Node(*r);
 		this->encoded[asciiValue] = *r; 
-	if(asciiValue == -62)
+	}
+	if(asciiValue == -64){
+	//	std::cout << r->getC() << " , " << r->getBit() << std::endl;
+	//	Node* tmp = new Node(*r);
 		this->encoded[27] = *r;
+	}
 }
 
 std::string HE::encodedinput(std::string input){
 	std::string encoded ="";
 	for(int i =0; i < input.length(); i++){
 		int asciiValue = input[i] - 96;
-		if(asciiValue > 96 && asciiValue < 123)
+		if(asciiValue > 0 && asciiValue < 27)
 			encoded = encoded + this->encoded[asciiValue].getBit();
-		else if(asciiValue == -62)
+		else if(asciiValue == -64)
 			encoded = encoded + this->encoded[27].getBit();
 
 	}
-	std::cout << "encoeded: " << encoded << std::endl;
 	return encoded;
 }
 
