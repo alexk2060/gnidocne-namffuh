@@ -48,7 +48,7 @@ std::string HE::encodedinput(std::string input){
 	return encoded;
 }
 
-std::string HE::findEncodedBits(char c, Node* r){
+std::string HE::findEncodedBits(std::string s, Node* r){
 	if(r == NULL)
 		return "";
 	
@@ -62,6 +62,11 @@ std::string HE::findEncodedBits(char c, Node* r){
 std::string HE::decodedOutput(std::string encodedinput){
 	std::string decoded = "";
 	for(int i = 0; i<encodedinput.length(); i++)
+		string encodedBits = "";
+		for(int j = i; j <encodedinput.length(); i++){
+			if(encodedBits.compare("") == 0)
+			findEncodedBits(encodedBits, this->root);
+		}
 		decoded = decoded + findEncodedBits(encodedinput[i], this->root);
 
 }
