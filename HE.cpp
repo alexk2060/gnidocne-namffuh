@@ -52,23 +52,30 @@ std::string HE::findEncodedBits(std::string s, Node* r){
 	if(r == NULL)
 		return "";
 	
-	findEncodedBits(c, r->getLeft());
-	findEncodedBits(c, r->getRight());
+	findEncodedBits(s, r->getLeft());
+	findEncodedBits(s, r->getRight());
 
-	if(r->getC() == c)
+	if((r->getBit()).compare(s) == 0)
 		return r->getBit();
+	
 }
 
 std::string HE::decodedOutput(std::string encodedinput){
 	std::string decoded = "";
-	for(int i = 0; i<encodedinput.length(); i++)
+	for(int i = 0; i<encodedinput.length(); i++){
 		string encodedBits = "";
-		for(int j = i; j <encodedinput.length(); i++){
+		string tmp = "";
+		for(int j = i; j <encodedinput.length(); j++){
+			tmp = tmp + encodedinput[j];
 			if(encodedBits.compare("") == 0)
-			findEncodedBits(encodedBits, this->root);
+				encodedBits = findEncodedBits(tmp, this->root);
+			else
+				break;
 		}
-		decoded = decoded + findEncodedBits(encodedinput[i], this->root);
+		decoded = decoded + encodedBits;
+	}
 
+		return decoded;
 }
 
 void HE::printEncoded(){
