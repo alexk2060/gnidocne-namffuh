@@ -26,6 +26,7 @@ class Node{
 			left = NULL;
 			right = NULL;
 		}
+
 		Node &operator=(Node const &rhs){
 			this->c = rhs.getC();
 			this->freq = rhs.getFreq();
@@ -33,8 +34,8 @@ class Node{
 			this->left = rhs.getLeft();
 			this->right = rhs.getRight();
 			return *this;
-
 		}
+
 		void setC(char character){c=character;};
 		void setFreq(int f){freq = f;};
 		void setBit(std::string s){bit = s;};
@@ -44,7 +45,7 @@ class Node{
 		int getFreq() const {return freq;};
 		std::string getBit() const {return bit;};
 		Node* getLeft() const {return left;};
-		Node* getRight() const {return right;};		
+		Node* getRight() const {return right;};
 };
 
 #endif

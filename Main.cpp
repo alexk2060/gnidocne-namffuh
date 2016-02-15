@@ -89,10 +89,12 @@ int main(int argc,char *argv[])
 
 		Heap h(nonZeroFrequencies, uniqueChars);
 		cout << "Heap successfully built" << endl;
+		h.print();
 		h.invariant();
 		h.print();
+		Node* root = &(h.getArr()[1]);
+		h.assignBit("", root);
 		
-	
 	is.close();
 	return 0;
 }

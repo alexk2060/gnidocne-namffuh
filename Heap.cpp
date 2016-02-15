@@ -94,56 +94,29 @@ void Heap::percolateUp(int location){
 
 //print out each array level 
 void Heap::print(){
-	for(int i = 1; i<=numElements; i++)
-		std::cout << i << ":	"<< this->arr[i].getC() << ", "<< this->arr[i].getFreq() << ", " << this->arr[i].getBit() << std::endl;
+	for(int i = 1; i<=numElements; i++){
+		std::cout << i << ":	"<< this->arr[i].getC() << ", "
+		<< this->arr[i].getFreq() << ", " << this->arr[i].getBit() << std::endl;
+	}
 }
 
 	void Heap::invariant(){
 		while(getNumElements()>1){
-			std::cout << "before: " << numElements << std::endl;			
 			Node right = deleteMin();
 			Node left = deleteMin();
-			std::cout << "right one is " << right.getC() << " " << left.getC() << std::endl;
- 			std::cout << "\n";
 			Node* internal = new Node('!');
 			internal->setFreq(right.getFreq()+left.getFreq());
 			internal->setRight(&right);
 			internal->setLeft(&left);
-			std::cout << "after two deletes: " << numElements << std::endl;
-			print();
 			insert(*internal);
-			std::cout << "after two deletes and one insert: " << numElements << std::endl;
-			print();			/*
-			if(getNumElements() == 1){
-				holder = &t;
-			}
-			*/
+			std::cout<<"right one: " << internal->getRight()->getC() << std::endl;
+			std::cout<<"left one: " << internal->getLeft()->getC() << std::endl;
 		}
 	}
-	void Heap::assignBits(Node* arr, int size){
-		arr[1].setBit("");
-		arr[2].setBit("1");
-		arr[3].setBit("2");
-		for(int i = 4; i<size; i++){
-			if(i%2==0)
-				arr[i].setBit(arr[i/2].getBit()+"1");
-			else
-				arr[i].setBit(arr[i/2].getBit()+"0");
-		}
-	}
-
-	void Heap::formArray(Node*arr, Node* root, int index){
+	void Heap::assignBit(std::string s, Node*& root){
 		if(root == NULL)
 			return;
-		arr[index] = *root;
-		formArray(arr, root->getLeft(), index*2);
-		formArray(arr, root->getRight(), index*2+1);
-	}
-
-	int Heap::totalNodes(Node* a){
-		if(a==NULL)
-			return 0;
-		else{
-			return 1+totalNodes(a->getLeft()) + totalNodes(a->getRight());
-		}
+		root->setBit(s);
+		assignBit(s+"1", root->getLeft());
+		assignBit(s+"0", root->getRight());
 	}

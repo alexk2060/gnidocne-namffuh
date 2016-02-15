@@ -1,7 +1,7 @@
 #ifndef __Heap_H__
 #define __Heap_H__
 
-
+#include <string>
 #include "Node.h"
 
 class Heap{
@@ -22,7 +22,7 @@ public:
 	
 	//void minHeapify(int *a, int i, int size); //min Heap, so first element in array will be the smallest #
 	
-	void insert(Node const&);
+	void insert(Node const& n);
 	void print();
 	Node deleteMin(); 
 
@@ -34,9 +34,7 @@ public:
 	int getNumElements(){return this->numElements;}
 	Node* getArr(){return this->arr;}
 	void invariant();
-	void assignBits(Node* arr, int size);
-	void formArray(Node* arr, Node* root, int index);
-	int totalNodes(Node* a);
+	void assignBit(std::string s, Node*& root);
 
 };
 
